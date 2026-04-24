@@ -1,0 +1,22 @@
+# Sécurité
+wp-config.php
+.env
+.htaccess
+*.log
+
+# wordpress core
+wp-admin
+index.php
+wp-includes
+license.txt
+wp-*.php
+wp-login.php
+!wp-config-sample.php
+
+# Content
+wp-content/uploads
+NOTE.md
+
+# Plugins
+wp-content/plugins/*
+!wp-content/plugins/learnsphere-quiz/
