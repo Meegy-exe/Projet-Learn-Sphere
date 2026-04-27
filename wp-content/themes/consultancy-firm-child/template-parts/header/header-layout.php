@@ -1,0 +1,131 @@
+<?php
+/**
+ * Header Layout
+ * @package Consultancy Firm
+ */
+
+$consultancy_firm_default = consultancy_firm_get_default_theme_options();
+
+$consultancy_firm_header_layout_facebook_link = esc_url(get_theme_mod(
+    'consultancy_firm_header_layout_facebook_link',
+    $consultancy_firm_default['consultancy_firm_header_layout_facebook_link']
+));
+
+$consultancy_firm_header_layout_twitter_link = esc_url(get_theme_mod(
+    'consultancy_firm_header_layout_twitter_link',
+    $consultancy_firm_default['consultancy_firm_header_layout_twitter_link']
+));
+
+$consultancy_firm_header_layout_pintrest_link = esc_url(get_theme_mod(
+    'consultancy_firm_header_layout_pintrest_link',
+    $consultancy_firm_default['consultancy_firm_header_layout_pintrest_link']
+));
+
+$consultancy_firm_header_layout_instagram_link = esc_url(get_theme_mod(
+    'consultancy_firm_header_layout_instagram_link',
+    $consultancy_firm_default['consultancy_firm_header_layout_instagram_link']
+));
+
+$consultancy_firm_header_layout_youtube_link = esc_url(get_theme_mod(
+    'consultancy_firm_header_layout_youtube_link',
+    $consultancy_firm_default['consultancy_firm_header_layout_youtube_link']
+));
+
+$consultancy_firm_sticky = get_theme_mod('consultancy_firm_sticky');
+$consultancy_firm_data_sticky = "false";
+if ($consultancy_firm_sticky) {
+    $consultancy_firm_data_sticky = "true";
+}
+global $wp_customize;
+
+?>
+<div class="main-header">
+    <section id="middle-header" class="header-navbar <?php if (is_user_logged_in() && !isset($wp_customize)) {
+        echo "login-user";
+    } ?>" data-sticky="<?php echo esc_attr($consultancy_firm_data_sticky); ?>">
+        <div class="wrapper header-wrapper header-box">
+            <div class="header-titles">
+                <?php
+                consultancy_firm_site_logo();
+                consultancy_firm_site_description();
+                ?>
+            </div>
+            <div class="theme-header-areas header-areas-right menu-box">
+                <div class="site-navigation">
+                    <nav class="primary-menu-wrapper"
+                        aria-label="<?php esc_attr_e('Horizontal', 'consultancy-firm'); ?>" role="navigation">
+                        <ul class="primary-menu theme-menu">
+                            <?php
+                            if (has_nav_menu('consultancy-firm-primary-menu')) {
+                                wp_nav_menu(
+                                    array(
+                                        'container' => '',
+                                        'items_wrap' => '%3$s',
+                                        'theme_location' => 'consultancy-firm-primary-menu',
+                                    )
+                                );
+                            } else {
+                                wp_list_pages(
+                                    array(
+                                        'match_menu_classes' => true,
+                                        'show_sub_menu_icons' => true,
+                                        'title_li' => false,
+                                        'walker' => new Consultancy_Firm_Walker_Page(),
+                                    )
+                                );
+                            } ?>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="navbar-controls twp-hide-js">
+                    <button type="button" class="navbar-control navbar-control-offcanvas">
+                        <span class="navbar-control-trigger" tabindex="-1">
+                            <?php consultancy_firm_the_theme_svg('menu'); ?>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="theme-header-areas header-areas-right header-social">
+                <div class="social-area">
+
+                    <!-- suppression des icones non utilisées -->
+                    <?php if ($consultancy_firm_header_layout_facebook_link || $consultancy_firm_header_layout_twitter_link || $consultancy_firm_header_layout_instagram_link) { ?>
+                        <!-- facebook -->
+                        <?php if ($consultancy_firm_header_layout_facebook_link) { ?>
+                            <a class="social-1"
+                                href="<?php echo esc_url($consultancy_firm_header_layout_facebook_link); ?>"><svg
+                                    xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc. -->
+                                    <path
+                                        d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z" />
+                                </svg></a>
+                        <?php } ?>
+
+                        <!-- twitter remplacé par discord -->
+                        <?php if ($consultancy_firm_header_layout_twitter_link) { ?>
+                            <a class="social-2" href="<?php echo esc_url($consultancy_firm_header_layout_twitter_link); ?>">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
+                                    <path fill="currentColor"
+                                        d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.276c8.3-11.369,15.9-23.27,22.845-35.6a1.884,1.884,0,0,0-1.023-2.651,331.428,331.428,0,0,1-47.531-22.61,1.891,1.891,0,0,1-.192-3.146c3.182-2.384,6.365-4.851,9.454-7.391a1.856,1.856,0,0,1,1.94-.383c95.27,43.681,198.816,43.681,293.18,0a1.861,1.861,0,0,1,1.94.383c3.089,2.54,6.273,5.007,9.454,7.391a1.89,1.89,0,0,1-.192,3.146,328.718,328.718,0,0,1-47.531,22.61,1.883,1.883,0,0,0-1.023,2.651c6.942,12.33,14.542,24.232,22.845,35.6a1.892,1.892,0,0,0,2.063.276A486.291,486.291,0,0,0,611.534,405.73a2.011,2.011,0,0,0,.765-1.375C623.571,280.4,592.744,171.218,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z" />
+                                </svg>
+                            </a>
+                        <?php } ?>
+
+                        <!-- ins tagram -->
+
+                        <?php if ($consultancy_firm_header_layout_instagram_link) { ?>
+                            <a class="social-4"
+                                href="<?php echo esc_url($consultancy_firm_header_layout_instagram_link); ?>"><svg
+                                    xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc. -->
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg></a>
+                        <?php } ?>
+
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
