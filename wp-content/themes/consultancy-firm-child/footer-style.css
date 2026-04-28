@@ -35,7 +35,7 @@ Template: consultancy-firm
 /* crédits  */
 /* bloc du bas */
 .site-info {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 25px 0;
     background-color: #2c2c2c;
 }
@@ -49,13 +49,13 @@ Template: consultancy-firm
 .footer-credits p {
     margin: 0;
     font-size: 14px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .scroll-top {
     font-weight: 600;
     font-size: 14px;
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     text-decoration: none;
 }
 
@@ -64,6 +64,7 @@ Template: consultancy-firm
 .newsletter-form-block {
     flex: 1;
     max-width: 550px;
+    min-width: 300px;
 }
 
 .newsletter-form-block input.mailpoet_text {
@@ -72,6 +73,8 @@ Template: consultancy-firm
     height: 50px !important;
     border-radius: 50px !important;
     padding: 0 20px !important;
+    /* responsive */
+    width: 100% !important;
 }
 
 .newsletter-form-block .mailpoet_submit {
@@ -82,4 +85,31 @@ Template: consultancy-firm
     border-radius: 50px !important;
     font-weight: 700 !important;
     text-transform: uppercase;
+    width: auto !important;
+    min-width: fit-content !important;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .newsletter-form-block .mailpoet_cols_container {
+        flex-direction: column !important;
+        display: flex !important;
+    }
+
+    .newsletter-form-block .mailpoet_submit {
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+
+    .info-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
 }
