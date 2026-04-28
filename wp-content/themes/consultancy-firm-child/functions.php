@@ -239,4 +239,5 @@ function consultancy_firm_product_section()
             </div>
         </div>
     </div>
-<?php }
+<?php
+}

@@ -1,9 +1,11 @@
+@import url('footer-style.css');
+
 /*
 Theme Name: NorthStars Custom (Consultancy Firm Child)
 Template: consultancy-firm
 */
 
-/* Problème du bouton get started */
+/* modification du bouton get started */
 
 /* cible les classes */
 .slide-btn a.btn-fancy {
@@ -19,7 +21,7 @@ Template: consultancy-firm
     color: #ffffff !important;
 }
 
-/* Problème des termes en anglais */
+/* modification des termes en anglais */
 /* Zone de contact hearder */
 .default-text {
     font-size: 0 !important;
@@ -32,7 +34,7 @@ Template: consultancy-firm
     color: #fff;
 }
 
-/* Problème de logo twitter */
+/* modification de logo twitter pour mettre celui discord */
 .social-area a.social-2 svg {
     display: none !important;
 }
@@ -47,4 +49,3 @@ Template: consultancy-firm
     height: 18px !important;
     display: inline-block !important;
 }
-
