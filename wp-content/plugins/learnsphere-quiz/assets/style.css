@@ -1,0 +1,84 @@
+/* * fichier de style du plugin LearnSphere Quiz de NorthStars * */
+
+/* content */
+.ls-quiz-wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+}
+
+/* titre */
+.ls-quiz-title {
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #1A3D9E;
+}
+
+/* bloc (questions, choix) */
+.ls-question-block {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    /* séparateur */
+    border-bottom: 1px solid #f3f4f6;
+}
+
+/* enleve le séparateur tout en bas du questionnaire */
+.ls-question-block:last-of-type {
+    border-bottom: none;
+}
+
+/* titre question */
+.ls-question-block h5 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+}
+
+/* le bouton radio & texte */
+.ls-form-check {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+/* btn radio */
+.ls-form-check-input {
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+/* texte label */
+.ls-form-check-label {
+    font-size: 16px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+/* btn verifier reponses */
+.ls-btn-submit {
+    padding: 12px 25px;
+    font-weight: 600;
+    margin-top: 15px;
+    border-radius: 50px;
+    background-color: #1A3D9E;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ls-btn-submit:hover {
+    background-color: #112a70;
+}
+
+/* affichage du score */
+.ls-quiz-result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1A3D9E;
+}
