@@ -1,0 +1,42 @@
+/* style du header et la nav barre */
+/* nav bar */
+/* menu & link */
+.primary-menu li a {
+    font-weight: 600;
+    color: var(--ns-blue) !important;
+    transition: color 0.3s ease;
+}
+
+/* hover */
+.primary-menu li a:hover {
+    color: var(--ns-dark-blue) !important;
+}
+
+/* icone */
+/* fill: colorer svg */
+.social-area a svg {
+    fill: var(--ns-blue);
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.social-area a:hover svg {
+    fill: var(--ns-dark-blue);
+    transform: scale(1.1);
+}
+
+.phone-text p,
+.phone-text a {
+    color: var(--ns-blue);
+}
+
+/* bg logo */
+.ns-logo-background-shape {
+    background-color: var(--ns-white) !important;
+}
+
+
+/* slogan invisible */
+.header-titles p, 
+.site-description {
+    display: none !important;
+}
