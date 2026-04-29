@@ -1,108 +1,92 @@
 <?php
 /**
- * Plugin Name: LearnSphere Quiz
- * Description: Quiz dynamique utilisant CPT et ACF.
- * Version: 1.1
+ * Plugin Name: LearnSphere Quiz Pro
+ * Description: Plugin complet avec CPT et ACF
+ * Version: osef
  * Author: Meegy & Magda
  */
 
 if (!defined('ABSPATH')) exit;
 
-// 1. CRÉATION DU CUSTOM POST TYPE (Le menu "Quiz" dans WordPress)
+// 1. ENREGISTREMENT DU CPT (L'interface d'administration)
 function ls_register_quiz_cpt() {
-    $labels = array(
-        'name'               => 'Quiz',
-        'singular_name'      => 'Quiz',
-        'menu_name'          => 'Quiz LearnSphere',
-        'add_new'            => 'Ajouter un Quiz',
-        'add_new_item'       => 'Ajouter un nouveau Quiz',
-        'edit_item'          => 'Modifier le Quiz',
-    );
-
     $args = array(
-        'labels'             => $labels,
-        'public'             => true,
-        'has_archive'        => true,
-        'menu_icon'          => 'dashicons-welcome-learn-more', // Petite icône de chapeau
-        'supports'           => array('title'), // On garde juste le titre, ACF fera le reste
-        'rewrite'            => array('slug' => 'quizz'),
+        'public' => true,
+        'label'  => 'Quiz LearnSphere',
+        'menu_icon' => 'dashicons-welcome-learn-more',
+        'supports' => array('title'),
+        'has_archive' => true,
     );
-
     register_post_type('quiz_learnsphere', $args);
 }
 add_action('init', 'ls_register_quiz_cpt');
 
-// 2. AFFICHAGE DU QUIZ (Le shotrtcode)
-function display_learnsphere_quiz($atts) {
-    // On permet de passer un ID : [quiz_learnsphere id="123"]
-    $atts = shortcode_atts(array(
-        'id' => null,
-    ), $atts);
+// 2. SHORTCODE D'AFFICHAGE
+function ls_display_quiz_shortcode($atts) {
+    $atts = shortcode_atts(array('id' => null), $atts);
+    $quiz_id = $atts['id'] ? absint($atts['id']) : get_the_ID();
 
-    $quiz_id = $atts['id'] ? $atts['id'] : get_the_ID();
+    if (!function_exists('get_field')) return "Veuillez activer ACF.";
 
-    // Vérifier si ACF est activé
-    if (!function_exists('get_field')) {
-        return "Erreur : ACF doit être installé pour ce quiz.";
-    }
-
-    $output = '<div class="ls-quiz-wrapper shadow-sm p-4 mb-5 bg-white rounded border">';
-    $output .= '<h2 class="mb-4 text-primary">' . get_the_title($quiz_id) . '</h2>';
-
-    // On suppose qu'on a un champ ACF de type "Repeater" nommé 'liste_questions'
-    if (have_rows('liste_questions', $quiz_id)) {
-        $output .= '<form id="quiz-form-'. $quiz_id .'">';
+    ob_start();
+    if (have_rows('liste_questions', $quiz_id)) : ?>
         
-        $q_index = 1;
-        while (have_rows('liste_questions', $quiz_id)) { 
-            the_row();
-            $question_text = get_sub_field('intitule_question');
+        <div class="ls-quiz-wrapper mb-5" id="quiz-<?php echo $quiz_id; ?>">
+            <h2 class="quiz-title"><?php echo esc_html(get_the_title($quiz_id)); ?></h2>
             
-            $output .= '<div class="question-block mb-4">';
-            $output .= '<h5>' . $q_index . '. ' . esc_html($question_text) . '</h5>';
+            <form id="ls-quiz-form-<?php echo $quiz_id; ?>">
+                <?php $q_idx = 1; while (have_rows('liste_questions', $quiz_id)) : the_row(); ?>
+                    
+                    <div class="quiz-question-container mb-4">
+                        <h5 class="question-text fw-bold">
+                            <?php echo $q_idx; ?>. <?php the_sub_field('titre_question'); ?>
+                        </h5>
 
-            // Sous-répéteur ou champs pour les choix
-            if (have_rows('choix_possibles')) {
-                while (have_rows('choix_possibles')) {
-                    the_row();
-                    $reponse = get_sub_field('texte_reponse');
-                    $is_correct = get_sub_field('est_correct'); // Case à cocher ou vrai/faux
+                        <?php if (have_rows('choix')) : while (have_rows('choix')) : the_row(); ?>
+                            <div class="form-check quiz-answer-option">
+                                <input class="form-check-input" type="radio" 
+                                       name="q<?php echo $q_idx; ?>" 
+                                       value="<?php echo get_sub_field('est_correct') ? '1' : '0'; ?>" 
+                                       required>
+                                <label class="form-check-label">
+                                    <?php the_sub_field('texte_reponse'); ?>
+                                </label>
+                            </div>
+                        <?php endwhile; endif; ?>
+                    </div>
 
-                    $output .= '<div class="form-check">';
-                    $output .= '<input class="form-check-input" type="radio" name="q'.$q_index.'" value="'.($is_correct ? '1' : '0').'">';
-                    $output .= '<label class="form-check-label">' . esc_html($reponse) . '</label>';
-                    $output .= '</div>';
-                }
+                <?php $q_idx++; endwhile; ?>
+
+                <button type="button" onclick="lsValidateQuiz(<?php echo $quiz_id; ?>)" class="btn btn-primary">
+                    Vérifier mes réponses
+                </button>
+            </form>
+
+            <div id="ls-results-<?php echo $quiz_id; ?>" class="mt-4 alert d-none text-center h4"></div>
+        </div>
+
+        <script>
+        function lsValidateQuiz(id) {
+            const form = document.getElementById('ls-quiz-form-' + id);
+            const total = form.querySelectorAll('.quiz-question-container').length;
+            const checked = form.querySelectorAll('input[type="radio"]:checked');
+
+            if (checked.length < total) { 
+                alert("Veuillez répondre à toutes les questions !"); 
+                return; 
             }
-            $output .= '</div>';
-            $q_index++;
+
+            let score = 0;
+            checked.forEach(i => { if(i.value === "1") score++; });
+
+            const res = document.getElementById('ls-results-' + id);
+            res.classList.remove('d-none', 'alert-success', 'alert-info');
+            res.classList.add(score === total ? 'alert-success' : 'alert-info');
+            res.innerHTML = "Votre score : " + score + " / " + total;
         }
+        </script>
 
-        $output .= '<button type="button" onclick="checkQuiz('.$quiz_id.')" class="btn btn-success mt-3">Vérifier mes réponses</button>';
-        $output .= '<div id="quiz-result-'.$quiz_id.'" class="mt-3 fw-bold"></div>';
-        $output .= '</form>';
-    } else {
-        $output .= '<p>Aucune question trouvée pour ce quiz.</p>';
-    }
-
-    $output .= '</div>';
-
-    // Petit script JS rapide pour la logique de test
-    $output .= '
-    <script>
-    function checkQuiz(id) {
-        let score = 0;
-        let total = document.querySelectorAll("#quiz-form-" + id + " .question-block").length;
-        let answers = document.querySelectorAll("#quiz-form-" + id + " input[type=\'radio\']:checked");
-        
-        answers.forEach(input => {
-            if(input.value === "1") score++;
-        });
-
-        document.getElementById("quiz-result-" + id).innerHTML = "Score : " + score + " / " + total;
-    }
-    </script>';
-
-    return $output;
+    <?php endif;
+    return ob_get_clean();
 }
-add_shortcode('quiz_learnsphere', 'display_learnsphere_quiz');
+add_shortcode('quiz_learnsphere', 'ls_display_quiz_shortcode');
