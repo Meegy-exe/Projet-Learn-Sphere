@@ -527,7 +527,8 @@ if ( ! class_exists( 'WPTT_WebFont_Loader' ) ) {
 		 */
 		public function get_base_path() {
 			if ( ! $this->base_path ) {
-				$this->base_path = apply_filters( 'wptt_get_local_fonts_base_path', $this->get_filesystem()->wp_content_dir() );
+				$base_path = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR : ABSPATH . 'wp-content';
+				$this->base_path = apply_filters( 'wptt_get_local_fonts_base_path', untrailingslashit( $base_path ) );
 			}
 			return $this->base_path;
 		}
@@ -618,13 +619,22 @@ if ( ! class_exists( 'WPTT_WebFont_Loader' ) ) {
 		protected function get_filesystem() {
 			global $wp_filesystem;
 
-			// If the filesystem has not been instantiated yet, do it here.
-			if ( ! $wp_filesystem ) {
-				if ( ! function_exists( 'WP_Filesystem' ) ) {
-					require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
-				}
-				WP_Filesystem();
+			if ( ! function_exists( 'WP_Filesystem' ) ) {
+				require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
 			}
+
+			// Force direct filesystem access for local file writes.
+			if ( ! $wp_filesystem || ! is_a( $wp_filesystem, 'WP_Filesystem_Direct' ) ) {
+				WP_Filesystem( array( 'method' => 'direct' ) );
+
+				if ( ! $wp_filesystem || ! is_a( $wp_filesystem, 'WP_Filesystem_Direct' ) ) {
+					if ( ! class_exists( 'WP_Filesystem_Direct' ) ) {
+						require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php' );
+					}
+					$wp_filesystem = new WP_Filesystem_Direct( array( 'method' => 'direct' ) );
+				}
+			}
+
 			return $wp_filesystem;
 		}
 	}
