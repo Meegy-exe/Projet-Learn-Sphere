@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LearnSphere Quiz Pro
+ * Plugin Name: LearnSphere Quiz 
  * Description: Plugin complet avec CPT et ACF
  * Version: 1.?
  * Author: Meegy & Magda
