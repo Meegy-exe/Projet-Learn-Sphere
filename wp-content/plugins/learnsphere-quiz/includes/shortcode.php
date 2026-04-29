@@ -35,7 +35,8 @@ function display_learnsphere_quiz($atts)
     if (have_rows('liste_questions', $quiz_id)) {
         // ouvre la balise form avec id unique
         $output .= '<form id="quiz-form-' . $quiz_id . '">';
-
+        // sil y a une img alors elle saffiche
+        
         $q_index = 1;
         // boucle a chaque question
         while (have_rows('liste_questions', $quiz_id)) {

@@ -31,7 +31,8 @@ function ls_register_quiz_cpt()
         // icone
         'menu_icon' => 'dashicons-welcome-learn-more',
         // par defaut affiche ce titre
-        'supports' => array('title'),
+        // thumbnail: permet dactiver limg
+        'supports' => array('title', 'thumbnail'),
         // modifie lurl pour afficher lurl avec quiz
         'rewrite' => array('slug' => 'quiz'),
     );
