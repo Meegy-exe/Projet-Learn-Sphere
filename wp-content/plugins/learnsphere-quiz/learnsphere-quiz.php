@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LearnSphere Quiz Pro
  * Description: Plugin complet avec CPT et ACF
- * Version: osef
+ * Version: 1.?
  * Author: Meegy & Magda
  */
 
