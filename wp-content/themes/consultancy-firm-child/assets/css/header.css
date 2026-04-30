@@ -137,3 +137,14 @@
         border-bottom: none !important;
     }
 }
+
+/* format tablette / ordi */
+#ns-mobile-menu {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    #ns-mobile-menu.active {
+        display: block !important;
+    }
+}
