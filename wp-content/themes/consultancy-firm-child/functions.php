@@ -6,7 +6,8 @@ function theme_enqueue_styles()
 {
     // theme parent    
     wp_enqueue_style('parent-styles', get_template_directory_uri() . '/style.css');
-
+    //theme enfant
+    wp_enqueue_style('child-style', get_stylesheet_uri(), array('parent-styles'));
     // header
     wp_enqueue_style('ns-header-style', get_stylesheet_directory_uri() . '/assets/css/header.css');
     // footer
@@ -119,7 +120,7 @@ function consultancy_firm_main_slider()
                 </div>
             </div>
         </div>
-        
+
     </div>
     <?php
 
@@ -153,7 +154,7 @@ function consultancy_firm_product_section()
                 <?php } ?>
             </div>
             <div class="team-mian-box">
-               <?php
+                <?php
                 $consultancy_firm_locations_query = new WP_Query(array('post_type' => 'post', 'posts_per_page' => 4, 'post__not_in' => get_option("sticky_posts"), 'category_name' => esc_html($consultancy_firm_locations_post_cat)));
                 if ($consultancy_firm_locations_query->have_posts()): ?>
                     <div class="ns-courses-grid">
@@ -196,3 +197,40 @@ function consultancy_firm_product_section()
     </div>
     <?php
 }
+
+
+// MENU BURGER
+// réadapter par rapport à celui du thème parent
+function ns_mobile_menu_script()
+{
+    ?>
+    <script>
+        // attend que la page charge
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // récupère btn & liens du menu
+            let bouton = document.querySelector('.navbar-control-trigger');
+            let menu = document.querySelector('.primary-menu');
+
+            // crée une nouvelle div menu burger
+            let customMenu = document.createElement('div');
+            customMenu.id = 'ns-mobile-menu';
+
+            // clone les liens dans la div
+            customMenu.appendChild(menu.cloneNode(true));
+
+            // insère menu dans la nav
+            let headerContainer = document.querySelector('.theme-header-areas');
+            headerContainer.appendChild(customMenu);
+
+            // lors du clic souris passe la classe en active
+            bouton.addEventListener('click', function () {
+                customMenu.classList.toggle('active');
+            });
+
+        });
+    </script>
+    <?php
+}
+// injecte le script dans le footer
+add_action('wp_footer', 'ns_mobile_menu_script');
