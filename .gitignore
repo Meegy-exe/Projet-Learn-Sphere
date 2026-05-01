@@ -1,4 +1,4 @@
-# Sécurité
+# sécurité
 wp-config.php
 .env
 .htaccess
@@ -13,10 +13,21 @@ wp-*.php
 wp-login.php
 !wp-config-sample.php
 
-# Content
+# content
 wp-content/uploads
 NOTE.md
 
-# Plugins
+# plugins
 wp-content/plugins/*
 !wp-content/plugins/learnsphere-quiz/
+
+# wordfence (erreur de permission)
+wp-content/wflogs/
+
+# cache & optimisation
+wp-content/cache/
+wp-content/autoptimize_404_handler.php
+
+# dossiers système additionnels
+node_modules/
+.DS_Store
