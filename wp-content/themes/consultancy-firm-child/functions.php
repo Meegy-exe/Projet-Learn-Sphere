@@ -48,15 +48,16 @@ function consultancy_firm_main_slider()
         $consultancy_firm_defaults['consultancy_firm_header_location']
     ));
 
+    // modification : cours plutot quarticle
     $banner_query = new WP_Query(array(
-        'post_type' => 'post',
+        'post_type' => 'cours',
         'posts_per_page' => 4,
         'post__not_in' => get_option('sticky_posts'),
-        'category_name' => esc_html($consultancy_firm_header_banner_cat),
+        // 'category_name' => esc_html($consultancy_firm_header_banner_cat),
     ));
 
     if (!$banner_query->have_posts()) {
-        error_log('No posts found for the banner query.');
+        error_log('Aucun cours trouvé pour le slider.');
         return '';
     }
 
@@ -155,7 +156,13 @@ function consultancy_firm_product_section()
             </div>
             <div class="team-mian-box">
                 <?php
-                $consultancy_firm_locations_query = new WP_Query(array('post_type' => 'post', 'posts_per_page' => 4, 'post__not_in' => get_option("sticky_posts"), 'category_name' => esc_html($consultancy_firm_locations_post_cat)));
+                $consultancy_firm_locations_query =
+                    new WP_Query(array(
+                        'post_type' => 'cours',
+                        'posts_per_page' => 4,
+                        'post__not_in' => get_option("sticky_posts"),
+                        // 'category_name' => esc_html($consultancy_firm_locations_post_cat)
+                    ));
                 if ($consultancy_firm_locations_query->have_posts()): ?>
                     <div class="ns-courses-grid">
                         <?php
@@ -198,39 +205,17 @@ function consultancy_firm_product_section()
     <?php
 }
 
-
 // MENU BURGER
-// réadapter par rapport à celui du thème parent
-function ns_mobile_menu_script()
-{
-    ?>
-    <script>
-        // attend que la page charge
-        document.addEventListener('DOMContentLoaded', function () {
-
-            // récupère btn & liens du menu
-            let bouton = document.querySelector('.navbar-control-trigger');
-            let menu = document.querySelector('.primary-menu');
-
-            // crée une nouvelle div menu burger
-            let customMenu = document.createElement('div');
-            customMenu.id = 'ns-mobile-menu';
-
-            // clone les liens dans la div
-            customMenu.appendChild(menu.cloneNode(true));
-
-            // insère menu dans la nav
-            let headerContainer = document.querySelector('.theme-header-areas');
-            headerContainer.appendChild(customMenu);
-
-            // lors du clic souris passe la classe en active
-            bouton.addEventListener('click', function () {
-                customMenu.classList.toggle('active');
-            });
-
-        });
-    </script>
-    <?php
+function ns_enqueue_custom_scripts() {
+    // chargement du script du menu bg
+    wp_enqueue_script(
+        'ns-mobile-menu',
+        // path du script
+        get_stylesheet_directory_uri() . '/assets/js/menu-burger.js',
+        array(),
+        '1.0',
+        // charge le script dans le footer (perf)
+        true
+    );
 }
-// injecte le script dans le footer
-add_action('wp_footer', 'ns_mobile_menu_script');
+add_action('wp_enqueue_scripts', 'ns_enqueue_custom_scripts');
