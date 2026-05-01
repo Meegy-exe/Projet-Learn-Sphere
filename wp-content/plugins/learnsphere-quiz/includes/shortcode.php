@@ -1,7 +1,17 @@
 <?php
 
-// sécurité : abspath constante définie par wordpress
-// arrete le script si quelqu'un tente dacceder au fichier
+// shortcode: outil qui gère laffichage, fonction wordpress
+
+// SECURITE:
+// abspath constante définie par wordpress
+// arrete le script si quelqu'un tente dacceder au fichier via un autre path
+
+// esc_html: securité (injection de code)
+// le score nest pas stocké dans la bdd donc pas possible dinjection sql
+
+// administration protégé via acf (gere le nettoyage des datas avant de mettre dans la bdd)
+
+// asbsint(): absolute integer natif de wordpress force la data a etre un nombre entier positif
 
 if (!defined('ABSPATH')) {
     exit;
@@ -19,7 +29,8 @@ function display_learnsphere_quiz($atts)
 
     // definit lid du quiz a afficher par defaut
     // (celui du para ou lid de la page)
-    $quiz_id = $atts['id'] ? $atts['id'] : get_the_ID();
+    // asbsint(): absolute integer natif de wordpress force la data a etre un nombre entier positif
+    $quiz_id = $atts['id'] ? absint($atts['id']) : get_the_ID();
 
     // vérifie si ACF est activé
     // evite les erreurs si le plugin nest pas installé
@@ -66,9 +77,9 @@ function display_learnsphere_quiz($atts)
         }
 
         // btn qui lance la function js du calcul du score
-        $output .= '<button type="button" onclick="checkQuiz(' . $quiz_id . ')" class="ls-btn-submit">Vérifier mes réponses</button>';
+        $output .= '<button type="button" onclick="caculateQuizScore(' . $quiz_id . ')" class="ls-btn-submit">Vérifier mes réponses</button>';
         // champs vide ou il y aura le score
-        $output .= '<div id="quiz-result-' . $quiz_id . '" class="ls-quiz-result"></div>';
+        $output .= '<div id="ls-results-' . $quiz_id . '" class="ls-quiz-result"></div>';
         $output .= '</form>';
     } else {
         // sinon si le repeteur est vide echo :
