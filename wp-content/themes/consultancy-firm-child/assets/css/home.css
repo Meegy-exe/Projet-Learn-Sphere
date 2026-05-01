@@ -24,16 +24,6 @@
     font-style: italic;
 }
 
-/* bloc contact mail */
-/* .sldier-contact-box {
-    fill: var(--ns-blue) !important;
-    background-color: var(--ns-white) !important;
-}
-
-.main-banner .sldier-contact-box {
-    border: 2px solid var(--ns-blue) !important;
-} */
-
 /* bloc a gauche */
 .main-banner,
 .main-banner .slider-box {
@@ -80,6 +70,17 @@
 .right-box .banner-img,
 .right-box .data-bg {
     background-color: var(--ns-blue) !important;
+}
+
+
+/* nouvelle banner uniquement les cours */
+.main-banner .post-content {
+    margin-top: 60px !important;
+}
+
+.main-banner .slider-heading {
+    font-size: 2.2rem !important; 
+    line-height: 1.2 !important;
 }
 
 

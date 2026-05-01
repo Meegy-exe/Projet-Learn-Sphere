@@ -54,6 +54,8 @@ function consultancy_firm_main_slider()
         'posts_per_page' => 4,
         'post__not_in' => get_option('sticky_posts'),
         // 'category_name' => esc_html($consultancy_firm_header_banner_cat),
+        // MISE EN AVANT DES COURS
+        'category_name' => 'slider'
     ));
 
     if (!$banner_query->have_posts()) {
