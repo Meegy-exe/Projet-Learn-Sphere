@@ -1,0 +1,150 @@
+/* style du header et la nav barre */
+/* nav bar */
+/* menu & link */
+.primary-menu li a {
+    font-weight: 600;
+    color: var(--ns-blue) !important;
+    transition: color 0.3s ease;
+}
+
+/* hover */
+.primary-menu li a:hover {
+    color: var(--ns-dark-blue) !important;
+}
+
+/* icone */
+/* fill: colorer svg */
+.header-wrapper .social-area a,
+.header-wrapper .social-area a svg,
+.header-wrapper .social-area a svg path {
+    display: inline-flex !important;
+    /* eviter la coupe de licone */
+    overflow: visible !important;
+    color: var(--ns-blue) !important;
+    fill: var(--ns-blue) !important;
+    transition: all 0.3s ease !important;
+}
+
+.header-wrapper .social-area a:hover,
+.header-wrapper .social-area a:hover svg,
+.header-wrapper .social-area a:hover svg path {
+    color: var(--ns-dark-blue) !important;
+    fill: var(--ns-dark-blue) !important;
+    transform: scale(1.1) !important;
+    opacity: 1 !important;
+    overflow: visible;
+}
+
+/* bg logo */
+.ns-logo-background-shape {
+    background-color: var(--ns-white) !important;
+}
+
+
+/* slogan invisible */
+.header-titles p,
+.site-description {
+    display: none !important;
+}
+
+
+/* RESPONSIVE */
+/* MENU BURGER */
+
+/* ICONE MENU BURGER */
+/* bg icone */
+.ns-logo-background-shape {
+    background-color: var(--ns-white, #ffffff) !important;
+}
+
+/* couleur icone */
+.navbar-control svg,
+.navbar-control svg path,
+.navbar-control-trigger svg,
+.navbar-control-trigger svg path {
+    fill: var(--ns-blue) !important;
+    color: var(--ns-blue) !important;
+}
+
+/* bg lors du clic */
+.navbar-control,
+.navbar-control-trigger {
+    background: transparent !important;
+    border-color: var(--ns-blue) !important;
+    outline: none !important;
+}
+
+/* hover icone */
+.navbar-control:hover svg path,
+.navbar-control-trigger:hover svg path {
+    fill: var(--ns-dark-blue) !important;
+}
+
+@media (max-width: 991px) {
+
+    /* espace icone */
+    .navbar-control,
+    .navbar-control-trigger {
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* menu burger sous le logo */
+    header,
+    .middle-header,
+    .header-wrapper,
+    .theme-header-areas {
+        flex-wrap: wrap !important;
+        position: relative !important;
+        overflow: visible !important;
+    }
+
+    /* reste de lancien thème */
+    .twp-offcanvas,
+    .offcanvas-menu,
+    .site-navigation {
+        display: none !important;
+    }
+
+    /* nouveau menu burger */
+    #ns-mobile-menu {
+        display: none;
+        position: relative !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+        padding-top: 10px !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* menu ouvert */
+    #ns-mobile-menu.active {
+        display: block !important;
+    }
+
+    /* style du menu burger */
+    #ns-mobile-menu ul li a {
+        display: block !important;
+        padding: 15px 20px !important;
+        text-align: center !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: var(--ns-blue) !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+
+    #ns-mobile-menu ul li:last-child a {
+        border-bottom: none !important;
+    }
+}
+
+/* format tablette / ordi */
+#ns-mobile-menu {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    #ns-mobile-menu.active {
+        display: block !important;
+    }
+}
