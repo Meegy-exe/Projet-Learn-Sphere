@@ -1,0 +1,164 @@
+/* PAGE DACCUEIL */
+
+/* btn bannière hero */
+.hero-content .slide-btn a.btn-fancy .btn-fancy {
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color: #f0f4f8 !important;
+    color: #1A3D9E !important;
+    transition: all 0.3s ease;
+}
+
+
+.slide-btn a.btn-fancy:hover {
+    color: var(--ns-dark-blue) !important;
+    background-color: #1A3D9E;
+}
+
+
+/* texte a venir */
+.ls-coming-soon {
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* bloc a gauche */
+.main-banner,
+.main-banner .slider-box {
+    background-color: var(--ns-blue) !important;
+    background-image: none !important;
+}
+
+/* texte bloc contact */
+.sldier-contact-box .phone-text p,
+.sldier-contact-box .phone-text a,
+.sldier-contact-box .default-text {
+    color: var(--ns-blue) !important;
+    font-size: 20px;
+}
+
+.sldier-contact-box .phone-icon svg {
+    fill: var(--ns-blue) !important;
+}
+
+.phone-icon {
+    background-color: transparent;
+}
+
+.slide-btn a.btn-fancy {
+    background-color: var(--ns-white) !important;
+    color: var(--ns-blue) !important;
+    border: 2px solid var(--ns-white);
+}
+
+/* slogan */
+.slider-heading a span,
+.slide-heading-main {
+    color: var(--ns-white) !important;
+    font-style: oblique;
+}
+
+/* description sous slogan */
+.slide-heading-main .entry-content {
+    font-size: 2rem !important;
+}
+
+/* img hero */
+.right-box .image-main-box,
+.right-box .banner-img,
+.right-box .data-bg {
+    background-color: var(--ns-blue) !important;
+}
+
+
+/* nouvelle banner uniquement les cours */
+.main-banner .post-content {
+    margin-top: 60px !important;
+}
+
+.main-banner .slider-heading {
+    font-size: 2.2rem !important; 
+    line-height: 1.2 !important;
+}
+
+
+/* PARTIE CENTRALE (bienvenue, article...) */
+.theme-product-block .section-heading h6 {
+    text-transform: uppercase !important;
+    color: var(--ns-blue) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    margin-bottom: 15px !important;
+    letter-spacing: 2px !important;
+
+    /* modification du titre du theme de base*/
+    text-shadow: none !important;
+    opacity: 1 !important;
+    -webkit-text-stroke: 0 !important;
+    -webkit-text-fill-color: currentcolor !important;
+}
+
+/* retire le double texte */
+.theme-product-block .section-heading h6 span {
+    display: none !important;
+}
+
+/* sous titre */
+.theme-product-block .section-heading h4 {
+    color: var(--ns-blue) !important;
+    font-size: 28px !important;
+    font-weight: 600;
+}
+
+
+/* ARTICLE/COURS */
+
+/* grille cours */
+.ns-courses-grid {
+    display: grid;
+    margin-top: 40px;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* changement de couleur (noir en bleu) */
+.team-box .main-owl-caption .entry-title a,
+.team-box .main-owl-caption .entry-title a span,
+.team-box .main-owl-caption .ls-coming-soon,
+.team-box .main-owl-caption p {
+    color: var(--ns-blue) !important;
+    transition: none !important;
+}
+
+/* hover normal sur limg ou le txt */
+.team-box:hover .post-content-location {
+    background-color: var(--ns-blue) !important;
+}
+.team-box:hover .main-owl-caption .entry-title a,
+.team-box:hover .main-owl-caption .entry-title a span,
+.team-box:hover .main-owl-caption .ls-coming-soon,
+.team-box:hover .main-owl-caption p {
+    color: #ffffff !important;
+}
+
+/* fractionné en 4, prend tout lespace */
+.ns-courses-grid .team-box {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* responsive tablette 2 colonnes */
+@media (max-width: 1024px) {
+    .ns-courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* responsive tel 1 colonne */
+@media (max-width: 768px) {
+    .ns-courses-grid {
+        grid-template-columns: 1fr;
+    }
+}
