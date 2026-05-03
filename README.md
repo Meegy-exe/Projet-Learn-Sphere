@@ -1,4 +1,4 @@
-# LearnSphere - Guide de survie Epitech
+# LearnSphere - Plateforme E-Learning & Moteur de Quiz adapté au besoin
 Plateforme d'e-learning développée dans le cadre du projet LearnSphere à Epitech. Ce site accompagne les futurs étudiants avec des cours et des quiz interactifs sur la pédagogie et la vie à l'école.
 
 ## Crédits
