@@ -39,3 +39,8 @@ a {
     max-width: 100% !important;
     width: 100% !important;
 }
+
+/* anti text sous img */
+.wp-block-image figcaption {
+    display: none !important;
+}

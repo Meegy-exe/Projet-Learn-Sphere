@@ -97,20 +97,10 @@ function consultancy_firm_main_slider()
                                                                 </span></a>
                                                         </h2>
                                                     </header>
+
+                                                    <!-- fix probleme que wordpress affiche tout meme la descrip de limg -->
+                                                    <!-- a refaire au propre pour le moment tout est supprimé -->
                                                     <div class="entry-content">
-                                                        <?php
-                                                        if (has_excerpt()) {
-                                                            echo esc_html(get_the_excerpt());
-                                                        } else {
-                                                            echo esc_html(wp_trim_words(get_the_content(), 25, '...'));
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="slide-btn">
-                                                        <a href="<?php the_permalink(); ?>" class="btn-fancy btn-fancy-primary">
-                                                            <!-- modification du bouton -->
-                                                            <?php echo esc_html__('Voir le contenu pédagogique', 'consultancy-firm'); ?>
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

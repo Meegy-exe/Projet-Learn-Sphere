@@ -114,3 +114,8 @@
 a:hover {
     color: var(--ns-dark-blue) !important;
 }
+
+/* ESPACE COMMENTAIRE */
+.wpa-test-msg {
+  background: #099cb61f !important;
+}

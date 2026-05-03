@@ -1,0 +1,156 @@
+# Translation of Plugins - Meta Field Block &#8211; Display custom fields in the Block Editor without coding - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - Meta Field Block &#8211; Display custom fields in the Block Editor without coding - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-03-25 18:22:33+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Meta Field Block &#8211; Display custom fields in the Block Editor without coding - Stable (latest release)\n"
+
+#. Description of the plugin
+#: meta-field-block.php
+msgid "Display a custom field as a block on the frontend. Supports custom fields for posts, terms, and users. Officially supports ACF, Meta Box, and all text-based meta fields."
+msgstr "Afficher un champ personnalisé comme un bloc sur l’interface publique. Prend en charge les champs personnalisés pour les publications, les termes et les utilisateurs/utilisatrices. Prend officiellement en charge ACF, Meta Box et tous les champs de métadonnées basés sur du texte."
+
+#: build/block.json
+msgctxt "block description"
+msgid "Display a custom field as a block on the frontend. Supports custom fields for posts, terms, and users. Officially supports ACF, Meta Box, and all text-based meta fields."
+msgstr "Afficher un champ personnalisé comme un bloc sur l’interface publique. Prend en charge les champs personnalisés pour les publications, les termes et les utilisateurs/utilisatrices. Prend officiellement en charge ACF, Meta Box et tous les champs de métadonnées basés sur du texte."
+
+#: includes/mb-fields.php:97
+msgid "This data type requires the Meta Box plugin installed and activated!"
+msgstr "Ce type de donnée nécessite que l’extension Meta Box soit installée et activée !"
+
+#: includes/mb-fields.php:983
+msgctxt "The display text for the \"false\" value of the true_false Meta Box field type"
+msgid "No"
+msgstr "Non"
+
+#: includes/mb-fields.php:982
+msgctxt "The display text for the \"true\" value of the true_false Meta Box field type"
+msgid "Yes"
+msgstr "Oui"
+
+#. translators: %s: the first name of the current user.
+#: freemius.php:105
+msgid "Thank you for using %2$s. We invite you to help the %2$s community by opting in to share some data about your usage of %2$s with us. This will help us make this plugin more compatible with your site and better at doing what you need it to. You can opt out at any time. And if you skip this, that's okay! %2$s will still work just fine."
+msgstr "Merci d’utiliser %2$s. Nous vous invitons à aider la communauté %2$s en acceptant de partager avec nous certaines données relatives à votre utilisation de %2$s. Cela nous aidera à rendre cette extension plus compatible avec votre site et à mieux faire ce dont vous avez besoin. Vous pouvez vous désinscrire à tout moment. Et si vous ne le faites pas, ce n’est pas grave ! %2$s fonctionnera toujours aussi bien."
+
+#: includes/settings.php:254
+msgid "Settings"
+msgstr "Réglages"
+
+#: includes/settings.php:112
+msgid "Review ↗"
+msgstr "Avis ↗"
+
+#: includes/settings.php:106
+msgid "Help & Support ↗"
+msgstr "Aide et support ↗"
+
+#: includes/freemius-config.php:73
+msgid "Contact"
+msgstr "Contact"
+
+#: includes/freemius-config.php:64
+msgid "Account"
+msgstr "Compte"
+
+#: includes/freemius-config.php:54
+msgid "Getting started"
+msgstr "Premiers pas"
+
+#: includes/freemius-config.php:123
+msgid "Upgrade"
+msgstr "Mettre à niveau"
+
+#. translators: %s: the first name of the current user.
+#: freemius.php:105
+msgid "Hey %1$s"
+msgstr "Bonjour %1$s"
+
+#. Author URI of the plugin
+#: meta-field-block.php
+msgid "https://metafieldblock.com?utm_source=MFB&utm_campaign=MFB+visit+site&utm_medium=link&utm_content=Author+URI"
+msgstr "https://metafieldblock.com?utm_source=MFB&utm_campaign=MFB+visit+site&utm_medium=link&utm_content=Author+URI"
+
+#. Plugin URI of the plugin
+#: meta-field-block.php
+msgid "https://metafieldblock.com?utm_source=MFB&utm_campaign=MFB+visit+site&utm_medium=link&utm_content=Plugin+URI"
+msgstr "https://metafieldblock.com?utm_source=MFB&utm_campaign=MFB+visit+site&utm_medium=link&utm_content=Plugin+URI"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "metadata"
+msgstr "métadonnée"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "setting field"
+msgstr "champ réglage"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "custom field"
+msgstr "champ personnalisé"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "meta field"
+msgstr "Champ méta"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "acf"
+msgstr "ACF"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "custom"
+msgstr "personnalisé"
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "meta"
+msgstr "méta"
+
+#: includes/acf-fields.php:721
+msgctxt "The display text for the \"false\" value of the true_false ACF field type"
+msgid "No"
+msgstr "Non"
+
+#: includes/acf-fields.php:720
+msgctxt "The display text for the \"true\" value of the true_false ACF field type"
+msgid "Yes"
+msgstr "Oui"
+
+#: includes/helper-functions.php:35
+msgid "This data type is not supported!"
+msgstr "Ce type de donnée n’est pas pris en charge !"
+
+#: includes/acf-fields.php:63
+msgid "This data type requires the ACF plugin installed and activated!"
+msgstr "Ce type de donnée nécessite que l’extension ACF soit installée et activée !"
+
+#: includes/acf-fields.php:359 includes/mb-fields.php:405
+msgid "This data type is not supported! Please contact the author for help."
+msgstr "Ce type de donnée n’est pas pris en charge ! Veuillez contacter l’auteur pour obtenir de l’aide."
+
+#: build/block.json
+msgctxt "block title"
+msgid "Meta Field Block"
+msgstr "Bloc champ méta"
+
+#. Author of the plugin
+#: meta-field-block.php
+msgid "Phi Phan"
+msgstr "Phi Phan"
+
+#. Plugin Name of the plugin
+#: meta-field-block.php
+msgid "Meta Field Block"
+msgstr "Meta Field Block"
