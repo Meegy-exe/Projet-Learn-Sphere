@@ -13,9 +13,9 @@ Template: consultancy-firm
 
 .newsletter-content {
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
 }
 
@@ -24,6 +24,9 @@ Template: consultancy-firm
     margin: 0 0 10px 0;
     font-size: 32px;
     color: #ffffff !important;
+}
+.newsletter-text-block {
+    margin-top: 55px;
 }
 
 .newsletter-text-block p {
@@ -87,6 +90,14 @@ Template: consultancy-firm
     text-transform: uppercase;
     width: auto !important;
     min-width: fit-content !important;
+}
+
+/* hover credits */
+.newsletter-form-block .widget a:hover,
+.newsletter-form-block .widget ul li a:hover {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    text-decoration: underline !important;
 }
 
 /* responsive */

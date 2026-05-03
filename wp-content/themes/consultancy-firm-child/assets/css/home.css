@@ -1,27 +1,27 @@
 /* PAGE DACCUEIL */
 
 /* btn bannière hero */
-.hero-content .slide-btn a.btn-fancy .btn-fancy {
+.hero-content .slide-btn a.btn-fancy .btn-fancy,
+.slide-btn a.btn-fancy {
     border: 2px solid #ffffff;
     border-radius: 50px;
     font-weight: 600;
-    background-color: #f0f4f8 !important;
-    color: #1A3D9E !important;
+    background-color: var(--ns-white) !important;
+    color: var(--ns-blue) !important;
     transition: all 0.3s ease;
 }
-
 
 .slide-btn a.btn-fancy:hover {
     color: var(--ns-dark-blue) !important;
     background-color: #1A3D9E;
 }
 
-
 /* texte a venir */
 .ls-coming-soon {
     color: #666;
     font-size: 14px;
     font-style: italic;
+    margin-top: auto;
 }
 
 /* bloc a gauche */
@@ -47,12 +47,6 @@
     background-color: transparent;
 }
 
-.slide-btn a.btn-fancy {
-    background-color: var(--ns-white) !important;
-    color: var(--ns-blue) !important;
-    border: 2px solid var(--ns-white);
-}
-
 /* slogan */
 .slider-heading a span,
 .slide-heading-main {
@@ -72,17 +66,15 @@
     background-color: var(--ns-blue) !important;
 }
 
-
 /* nouvelle banner uniquement les cours */
 .main-banner .post-content {
     margin-top: 60px !important;
 }
 
 .main-banner .slider-heading {
-    font-size: 2.2rem !important; 
+    font-size: 2.2rem !important;
     line-height: 1.2 !important;
 }
-
 
 /* PARTIE CENTRALE (bienvenue, article...) */
 .theme-product-block .section-heading h6 {
@@ -112,7 +104,6 @@
     font-weight: 600;
 }
 
-
 /* ARTICLE/COURS */
 
 /* grille cours */
@@ -127,19 +118,35 @@
 .team-box .main-owl-caption .entry-title a,
 .team-box .main-owl-caption .entry-title a span,
 .team-box .main-owl-caption .ls-coming-soon,
-.team-box .main-owl-caption p {
+.team-box .main-owl-caption p,
+.team-box .main-owl-caption .ls-quiz-link {
     color: var(--ns-blue) !important;
-    transition: none !important;
+    transition: color 0.3s ease !important;
 }
 
 /* hover normal sur limg ou le txt */
+.team-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* hover bleu card cours */
 .team-box:hover .post-content-location {
     background-color: var(--ns-blue) !important;
 }
-.team-box:hover .main-owl-caption .entry-title a,
-.team-box:hover .main-owl-caption .entry-title a span,
-.team-box:hover .main-owl-caption .ls-coming-soon,
-.team-box:hover .main-owl-caption p {
+
+/* fix rebord blanc, rend toute la card bleu */
+.team-box:hover .main-owl-caption {
+    background-color: var(--ns-blue) !important;
+    transition: background-color 0.3s ease;
+}
+
+/* tout hover rend les txt blanc */
+.team-box:hover .post-content-location .entry-title a,
+.team-box:hover .post-content-location .entry-title a span,
+.team-box:hover .post-content-location .ls-coming-soon,
+.team-box:hover .post-content-location p,
+.team-box:hover .post-content-location .ls-quiz-link {
     color: #ffffff !important;
 }
 
@@ -161,4 +168,143 @@
     .ns-courses-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* QUIZ PAGE ACCUEIL */
+
+/* espace entre les deux zones quiz et cours */
+.ls-section-padding {
+    padding: 60px 0;
+}
+
+/* btn voir tous cours & quizz */
+.ls-header-btn-box .btn-fancy,
+.ls-center-box .btn-fancy {
+    border: 2px solid var(--ns-blue) !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease !important;
+    background-color: transparent !important;
+    color: var(--ns-blue) !important;
+}
+
+.ls-header-btn-box .btn-fancy:hover,
+.ls-center-box .btn-fancy:hover {
+    box-shadow: 0 5px 15px rgba(26, 61, 158, 0.3) !important;
+    transform: translateY(-2px);
+    border-color: var(--ns-blue) !important;
+    background-color: var(--ns-blue) !important;
+    color: #ffffff !important;
+}
+
+/* changement sur les titres comme pour cours */
+.theme-quiz-block .section-heading h6 {
+    margin-bottom: 15px !important;
+    text-transform: uppercase !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    color: var(--ns-blue) !important;
+    /* pour supprimer leffet orange theme parent */
+    text-shadow: none !important;
+    opacity: 1 !important;
+    -webkit-text-stroke: 0 !important;
+    -webkit-text-fill-color: currentcolor !important;
+}
+
+/* retire le titre orange */
+.theme-quiz-block .section-heading h6 span {
+    display: none !important;
+}
+
+/* style du titre h4 des quiz */
+.theme-quiz-block .section-heading h4 {
+    font-size: 28px !important;
+    font-weight: 600;
+    color: var(--ns-blue) !important;
+}
+
+/* retire le contour orange  au clic de la card sauf nav clavier */
+.theme-article-post a:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* effet de zoom sur limg */
+.team-box:hover .featured-img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* style du lien à l'intérieur */
+.ls-quiz-link {
+    display: inline-block;
+    font-size: 16px !important;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+/* COURS & QUIIZ */
+/* même structure */
+.team-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 480px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+}
+
+/* hauteur sur le bloc principal du texte */
+.main-owl-caption {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background-color: transparent !important;
+}
+
+/* display flex sur bloc intérieur */
+.post-content-location {
+    display: flex;
+    padding: 30px 20px !important;
+    flex-grow: 1;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+    background-color: #ffffff;
+}
+
+/* cible le p avec le lien cliquable */
+.post-content-location p:last-child {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+}
+
+/* hauteur fixe pour limg */
+.theme-article-post .entry-thumbnail {
+    width: 100%;
+    height: 260px !important;
+    min-height: 260px !important;
+    overflow: hidden;
+}
+
+.data-bg.featured-img {
+    height: 100% !important;
+    transition: transform 0.3s ease;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* titre peut faire 3 lignes avant ... */
+.theme-article-post .entry-title a {
+    display: -webkit-box;
+    margin-bottom: 12px;
+    min-height: auto;
+    -webkit-line-clamp: 3 !important;
+    line-clamp: 3 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
