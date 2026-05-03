@@ -103,7 +103,7 @@ Conformément aux attentes du projet LearnSphere, l'objectif est de fournir un e
 ***Ce qui ne devrait normalement pas être versionné :***
 Dans un cadre professionnel réel, les éléments suivants figureraient dans le .gitignore pour des raisons de sécurité et de poids :
 
-    - export .sql :
+    - export .sql (dossier sql a la racine):
     Contenu : contient tous les textes, réglages de thèmes et types de contenus personnalisés (quiz_learnsphere et cours).
 
     - wp-admin/ & wp-includes/ :
