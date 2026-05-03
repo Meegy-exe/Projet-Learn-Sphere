@@ -14,8 +14,10 @@ function calculateQuizScore(quizId) {
     // prépare les var pour le comptage des points
     let score = 0;
 
+    // prepare la zone ou il yaura la solution
+    let solutions = [];
     // cible les questions (blocs div) notées dans le formulaire
-    const  allQuestions = quizForm.querySelectorAll('.ls-question-card');
+    const allQuestions = quizForm.querySelectorAll('.ls-question-card');
 
     // compte les questions pour le score total
     let totalNumberOfQuestions = allQuestions.length;
@@ -25,6 +27,9 @@ function calculateQuizScore(quizId) {
         // le compte commence à 0
         // cible le nom de la question
         let questionName = 'q' + (index + 1);
+
+        // recupere solution 
+        let solutionTexte = blocQuestion.getAttribute('data-solution');
 
         // btn radio: rond à selectionné
         // cible btn radio l'utilisateur a coché pour la question en particulier
@@ -45,6 +50,8 @@ function calculateQuizScore(quizId) {
             } else {
                 // SINON en cas de 0 soit false alors petite bordure rouge
                 blocQuestion.classList.add('ls-wrong');
+                // uniquement en cas derreur la reposne
+                solutions.push("Question " + (index + 1) + " : la bonne réponse était <strong>" + solutionTexte + "</strong>");
             }
         } else {
             // SINON en cas d'aucune réponse alors petite bordure orange
@@ -65,9 +72,9 @@ function calculateQuizScore(quizId) {
         message = "Bravo ! Vous avez correctement répondu à au moins la moitié des questions";
         // SINON en dessous de la moitié ou moins
     } else {
-        message = "Vous avez fait quelques erreurs. Révisez et retentez le quiz pour améliorer votre score !";
+        message = "Vous avez fait des erreurs. Voici la correction :<br><ul style='text-align:left; display:inline-block;'>" +
+            "<li>" + solutions.join("</li><li>") + "</li></ul>";
     }
-
     // met le score total dans la page
     resultArea.innerHTML = "<strong>Votre score : " + score + " / " + totalNumberOfQuestions + "</strong><br>" + message;
 

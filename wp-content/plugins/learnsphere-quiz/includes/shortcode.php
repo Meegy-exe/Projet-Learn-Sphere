@@ -92,7 +92,7 @@ function display_learnsphere_quiz($atts)
             $question_text = get_field('question', $q_id);
             $correct_answer = get_field('reponse_correcte', $q_id);
 
-            $output .= '<div class="ls-question-card">';
+            $output .= '<div class="ls-question-card" data-solution="' . esc_attr($correct_answer) . '">';
             // esc_html: securité (injection de code)
             $output .= '<h4 class="ls-question-text">' . $q_index . '. ' . esc_html($question_text) . '</h4>';
 
