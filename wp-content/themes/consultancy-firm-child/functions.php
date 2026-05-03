@@ -132,7 +132,6 @@ function consultancy_firm_main_slider()
     return $output;
 }
 
-
 function consultancy_firm_product_section()
 {
 
@@ -148,12 +147,17 @@ function consultancy_firm_product_section()
         <div class="wrapper">
             <div class="section-heading">
                 <?php if ($consultancy_firm_team_section_subtitle) { ?>
-                    <h6><?php echo esc_html($consultancy_firm_team_section_subtitle); ?>
-                        <span><?php echo esc_html($consultancy_firm_team_section_subtitle); ?></span>
+                    <h6>
+                        <?php echo esc_html($consultancy_firm_team_section_subtitle); ?>
+                        <span>
+                            <?php echo esc_html($consultancy_firm_team_section_subtitle); ?>
+                        </span>
                     </h6>
                 <?php } ?>
                 <?php if ($consultancy_firm_team_section_title) { ?>
-                    <h4><?php echo esc_html($consultancy_firm_team_section_title); ?></h4>
+                    <h4>
+                        <?php echo esc_html($consultancy_firm_team_section_title); ?>
+                    </h4>
                 <?php } ?>
             </div>
             <div class="team-mian-box">
@@ -185,8 +189,9 @@ function consultancy_firm_product_section()
                                     <div class="post-content-location">
                                         <header class="entry-header">
                                             <h2 class="entry-title entry-title-big">
-                                                <a href="<?php the_permalink(); ?>"
-                                                    rel="bookmark"><span><?php the_title(); ?></span></a>
+                                                <a href="<?php the_permalink(); ?>" rel="bookmark"><span>
+                                                        <?php the_title(); ?>
+                                                    </span></a>
                                             </h2>
                                         </header>
 
