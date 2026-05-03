@@ -32,7 +32,7 @@ function ls_register_quiz_cpt()
         'menu_icon' => 'dashicons-welcome-learn-more',
         // par defaut affiche ce titre
         // thumbnail: permet dactiver limg
-        'supports' => array('title', 'thumbnail'),
+        'supports' => array('title', 'thumbnail', 'editor', 'custom-fields'),
         // modifie lurl pour afficher lurl avec quiz
         'rewrite' => array('slug' => 'quiz'),
     );
@@ -92,3 +92,46 @@ function ls_register_quiz_taxonomies()
 }
 // cree les taxo au moment de linitiation
 add_action('init', 'ls_register_quiz_taxonomies');
+
+// hook : wordpress utilise ce filtre pour mettre le contenu de la fonction avan tdafficher la page
+add_filter('the_content', 'ls_add_quiz_meta_automatically');
+// ajoute les metadonnées (genre, difficulte)
+// param string $content : content original de la page
+// return le contenu modifié par le code
+function ls_add_quiz_meta_automatically($content)
+{
+    // is_singular : verifie la page si luser se trouve sur la page specific dun quiz
+    // SIL est dessus alors
+    if (is_singular('quiz_learnsphere')) {
+        // get the terms: recuperer les taxonomies (difficulte)
+        $niveaux = get_the_terms(get_the_ID(), 'ls_quiz_niveau');
+        // est ce que la var contient des data et quil ya pas derreur
+        // si oui recupere la data
+        // sinon met undefined
+        $difficulte = ($niveaux && !is_wp_error($niveaux)) ? $niveaux[0]->name : 'Non définie';
+        $genres = get_the_terms(get_the_ID(), 'ls_quiz_genre');
+        $categorie = ($genres && !is_wp_error($genres)) ? $genres[0]->name : 'Général';
+        // get the terms: recuperer les taxonomies (date du post)
+        $date = get_the_date();
+        // structure html
+        $quiz_meta = '
+        <div class="quiz-meta-container">
+            <p class="quiz-meta-description">
+                Testez vos connaissances et validez vos acquis sur ce module en répondant aux questions ci-dessous.
+            </p>
+            
+            <hr class="quiz-meta-separator">
+            
+            <div class="quiz-meta-details">
+                <span class="quiz-meta-item"><strong>Niveau :</strong> ' . esc_html($difficulte) . '</span>
+                <span class="quiz-meta-item"><strong>Thématique :</strong> ' . esc_html($categorie) . '</span>
+                <span class="quiz-meta-item"><strong>Publié le :</strong> ' . $date . '</span>
+            </div>
+        </div>';
+
+        // placement dans le contenu
+        return $quiz_meta . $content;
+    }
+    // si pas page quiz return content originel
+    return $content;
+}

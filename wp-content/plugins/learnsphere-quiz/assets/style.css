@@ -111,3 +111,40 @@
     border-left: 5px solid #ffc107 !important;
     background-color: #fffdf2;
 }
+
+/* DESCRIPTION TEXTE DATE */
+/* bloc principal */
+.quiz-meta-container {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+}
+
+/* descript */
+.quiz-meta-description {
+    margin: 0;
+    color: #555555;
+    font-style: italic;
+}
+
+/* separation */
+.quiz-meta-separator {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+
+/* bloc date ect */
+.quiz-meta-details {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* tag indiv */
+.quiz-meta-item {
+    font-size: 14px;
+    color: #333333;
+}
