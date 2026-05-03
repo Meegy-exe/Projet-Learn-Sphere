@@ -1,24 +1,24 @@
 # sécurité
 wp-config.php
 .env
-.htaccess
+# .htaccess
 *.log
 
 # wordpress core
-wp-admin
-index.php
-wp-includes
-license.txt
-wp-*.php
-wp-login.php
+# wp-admin
+# index.php
+# wp-includes
+# license.txt
+# wp-*.php
+# wp-login.php
 !wp-config-sample.php
 
 # content
-wp-content/uploads
+# wp-content/uploads
 NOTE.md
 
 # plugins
-wp-content/plugins/*
+# wp-content/plugins/*
 !wp-content/plugins/learnsphere-quiz/
 
 # wordfence (erreur de permission)
