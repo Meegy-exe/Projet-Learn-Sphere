@@ -15,10 +15,62 @@ Version: 1.0.2
 }
 
 /* sur toutes les pages */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--ns-blue);
 }
 
 a {
-       color: var(--ns-blue);
+    color: var(--ns-blue);
+}
+
+
+/* PAGE COURS */
+/* WARNING a refaire proprement */
+/* element caché du theme parent est caché pour le moment */
+.widget_pages {
+    display: none !important;
+}
+
+.widget_archive {
+    display: none !important;
+}
+
+.widget_tag_cloud {
+    display: none !important;
+}
+
+
+/* btn pagination */
+/* bg btn */
+.pagination a.next,
+.pagination .next.page-numbers,
+.navigation.pagination .nav-links a {
+    background-color: #1A3D9E !important;
+    color: #ffffff !important;
+    border-color: #1A3D9E !important;
+}
+
+/* hover a refaire */
+.pagination a.next:hover,
+.pagination .next.page-numbers:hover,
+.navigation.pagination .nav-links a:hover {
+    background-color: #153280 !important;
+    border-color: #153280 !important;
+}
+
+/* numero de page */
+.pagination .current,
+.navigation.pagination .nav-links .current {
+    background-color: #1A3D9E !important;
+    color: #ffffff !important;
+}
+
+/* bg btn */
+.navigation.pagination .page-numbers {
+    background-color: transparent !important;
 }
