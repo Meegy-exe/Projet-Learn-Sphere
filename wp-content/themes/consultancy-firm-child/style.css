@@ -15,10 +15,27 @@ Version: 1.0.2
 }
 
 /* sur toutes les pages */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--ns-blue);
 }
 
 a {
-       color: var(--ns-blue);
+    color: var(--ns-blue);
+}
+
+/* page credit/policy */
+/* page contact */
+/* fix largeur du body de la page suite au rm de la side bar */
+.page #secondary {
+    display: none !important;
+}
+.page #primary {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }

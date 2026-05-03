@@ -76,3 +76,6 @@ Nous avons veillé à la sécurisation du plugin  :
 
 - Complianz
     Pour être en règle avec la loi (RGPD/Cookies).
+
+- Loco translate
+    Permet de traduire tout le site dans une seule et même langue.

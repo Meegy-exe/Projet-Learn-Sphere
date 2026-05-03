@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: LearnSphere Quiz
- * Description: Quiz dynamique utilisant CPT et ACF.
- * Version: 1.2
+ * Description: Système de quiz interactif pour la plateforme LearnSphere, incluant des Custom Post Types et une gestion via ACF
+ * Version: 1.3
  * Author: Meegy & Magda
  */
 

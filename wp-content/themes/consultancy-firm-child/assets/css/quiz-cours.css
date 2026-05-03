@@ -1,0 +1,116 @@
+/* style pour la page quiz & cours */
+
+/* espace entre chaque bloc des filtres */
+.ls-filter-form .ls-filter-group {
+    margin-bottom: 15px;
+}
+
+/* titre au dessus de chaque champs */
+.ls-filter-form .ls-filter-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* champs de texte & menu select */
+.ls-filter-form .ls-filter-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* checkboe des cases à cocher */
+.ls-filter-form .ls-filter-checkboxes {
+    max-height: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+/* label & checkbox */
+.ls-filter-form .ls-filter-checkbox-label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/* btn valider filtre */
+.ls-filter-form .ls-filter-submit {
+    width: 100%;
+    margin-top: 5px;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    background-color: #1A3D9E;
+    color: white;
+}
+
+/* hover */
+.ls-filter-form .ls-filter-submit:hover {
+    background-color: #122b70; /* Bleu plus foncé */
+}
+
+
+/* PAGE COURS */
+/* WARNING a refaire proprement */
+/* element caché du theme parent est caché pour le moment */
+.widget_pages {
+    display: none !important;
+}
+
+.widget_archive {
+    display: none !important;
+}
+
+.widget_tag_cloud {
+    display: none !important;
+}
+
+
+/* btn pagination */
+/* bg btn */
+.pagination a.next,
+.pagination .next.page-numbers,
+.navigation.pagination .nav-links a {
+    background-color: #1A3D9E !important;
+    color: #ffffff !important;
+    border-color: #1A3D9E !important;
+}
+
+/* hover a refaire */
+.pagination a.next:hover,
+.pagination .next.page-numbers:hover,
+.navigation.pagination .nav-links a:hover {
+    background-color: #153280 !important;
+    border-color: #153280 !important;
+}
+
+/* numero de page */
+.pagination .current,
+.navigation.pagination .nav-links .current {
+    background-color: #1A3D9E !important;
+    color: #ffffff !important;
+}
+
+/* bg btn */
+.navigation.pagination .page-numbers {
+    background-color: transparent !important;
+}
+
+/* contour btn pagination */
+.theme-btn-link {
+    border: 1px solid var(--ns-blue) !important;
+}
+
+a:hover {
+    color: var(--ns-dark-blue) !important;
+}

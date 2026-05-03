@@ -16,6 +16,16 @@ function theme_enqueue_styles()
     if (is_front_page()) {
         wp_enqueue_style('ns-home-style', get_stylesheet_directory_uri() . '/assets/css/home.css');
     }
+    // affiche si sur page quiz ou cours
+    if (is_post_type_archive('cours') || is_post_type_archive('quiz_learnsphere')) {
+        wp_enqueue_style(
+            'ns-quiz-cours-style',
+            get_stylesheet_directory_uri() . '/assets/css/quiz-cours.css',
+            // css bien chargé 
+            array('child-style'),
+            '1.0'
+        );
+    }
 }
 
 
@@ -132,7 +142,6 @@ function consultancy_firm_main_slider()
     return $output;
 }
 
-
 function consultancy_firm_product_section()
 {
 
@@ -148,13 +157,24 @@ function consultancy_firm_product_section()
         <div class="wrapper">
             <div class="section-heading">
                 <?php if ($consultancy_firm_team_section_subtitle) { ?>
-                    <h6><?php echo esc_html($consultancy_firm_team_section_subtitle); ?>
-                        <span><?php echo esc_html($consultancy_firm_team_section_subtitle); ?></span>
+                    <h6>
+                        <?php echo esc_html($consultancy_firm_team_section_subtitle); ?>
+                        <span>
+                            <?php echo esc_html($consultancy_firm_team_section_subtitle); ?>
+                        </span>
                     </h6>
                 <?php } ?>
                 <?php if ($consultancy_firm_team_section_title) { ?>
-                    <h4><?php echo esc_html($consultancy_firm_team_section_title); ?></h4>
+                    <h4>
+                        <?php echo esc_html($consultancy_firm_team_section_title); ?>
+                    </h4>
                 <?php } ?>
+                <!-- btn vers les cours -->
+                <div class="ls-header-btn-box">
+                    <a href="<?php echo get_post_type_archive_link('cours'); ?>" class="btn-fancy btn-fancy-primary">
+                        Voir tous les cours
+                    </a>
+                </div>
             </div>
             <div class="team-mian-box">
                 <?php
@@ -185,13 +205,13 @@ function consultancy_firm_product_section()
                                     <div class="post-content-location">
                                         <header class="entry-header">
                                             <h2 class="entry-title entry-title-big">
-                                                <a href="<?php the_permalink(); ?>"
-                                                    rel="bookmark"><span><?php the_title(); ?></span></a>
+                                                <a href="<?php the_permalink(); ?>" rel="bookmark"><span>
+                                                        <?php the_title(); ?>
+                                                    </span></a>
                                             </h2>
                                         </header>
 
-                                        <p style="ls-coming-soon">Plus d'informations à venir...</p>
-
+                                        <!-- <p style="ls-coming-soon">Plus d'informations à venir...</p> -->
                                     </div>
                                 </div>
                             </div>
@@ -207,8 +227,152 @@ function consultancy_firm_product_section()
     <?php
 }
 
+// function pour ajouter les 4 quizz sur la page daccueil (comme function cours)
+function consultancy_firm_quiz_section()
+{
+    ?>
+    <div class="theme-quiz-block ls-section-padding">
+        <div class="wrapper">
+
+            <!-- structure identique aux cours et au theme parent-->
+            <div class="section-heading">
+                <h6>Évaluez vos connaissances <span>Quiz interactifs</span></h6>
+                <h4>Nos derniers quiz</h4>
+                <!-- permet dacceder au data de tous les quiz  -->
+                <!-- btn vers les quiz -->
+                <div class="ls-header-btn-box">
+                    <a href="<?php echo get_post_type_archive_link('quiz_learnsphere'); ?>"
+                        class="btn-fancy btn-fancy-primary">
+                        Voir tous les quiz
+                    </a>
+                </div>
+            </div>
+
+            <div class="team-mian-box">
+                <?php
+                // wp_query: permet de faire une requete qui recupere les datas de la bdd
+                $quiz_query = new WP_Query(array(
+                    // cpt du quiz
+                    'post_type' => 'quiz_learnsphere',
+                    // affiche 4
+                    'posts_per_page' => 4,
+                    // par ordre chrono
+                    'orderby' => 'date',
+                    // plus recent dabord
+                    'order' => 'DESC'
+                ));
+
+                // securite: affiche la structure que SI il y a des quizz publiés 
+                if ($quiz_query->have_posts()): ?>
+                    <div class="ns-courses-grid">
+                        <?php
+
+                        // boucle while : parcourt chaque quiz
+                        while ($quiz_query->have_posts()):
+                            $quiz_query->the_post();
+
+                            // recupere limg mise en avant via api wordpress
+                            $featured_img = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                            ?>
+
+                            <div class="theme-article-post team-box">
+                                <div class="entry-thumbnail">
+
+                                    <!-- affiche une img par defaut si pas dimg -->
+                                    <div class="data-bg featured-img"
+                                        data-background="<?php echo esc_url($featured_img ? $featured_img : get_template_directory_uri() . '/assets/images/quiz-default.png'); ?>">
+                                        <a href="<?php the_permalink(); ?>" class="theme-image-responsive"></a>
+                                    </div>
+                                </div>
+
+                                <div class="main-owl-caption">
+                                    <div class="post-content-location">
+                                        <header class="entry-header">
+                                            <h2 class="entry-title">
+                                                <!-- the title: affiche le titre -->
+                                                <a href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a>
+                                            </h2>
+                                        </header>
+                                        <!-- <p class="ls-coming-soon">Plus d'informations à venir...</p> -->
+
+                                        <!-- recupere la valeur du champ acf difficulte -->
+                                        <p>Difficulté : <?php echo esc_html(get_field('difficulte') ?: '2'); ?></p>
+                                        <!-- btn lancer quizz -->
+                                        <p><a href="<?php the_permalink(); ?>" class="ls-quiz-link">Lancer le quiz →</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile;
+
+                        // wp reset postdata : reinitialise la var globale $post (evite de melanger les datas des quiz)
+                        wp_reset_postdata(); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+// filtre de recherche par theme
+// modification du theme parent
+function ns_filter_and_sort_courses($query)
+{
+    if (!is_admin() && $query->is_main_query() && (is_post_type_archive('cours') || is_post_type_archive('quiz_learnsphere'))) {
+
+        // FILTRE gestion des niveaux de diffulté QUIZ
+        if (isset($_GET['difficulty_level']) && !empty($_GET['difficulty_level'])) {
+            $level = sanitize_text_field($_GET['difficulty_level']);
+
+            if (is_post_type_archive('quiz_learnsphere')) {
+                // slug dans quiz genre
+                $query->set('tax_query', array(
+                    'relation' => 'AND',
+                    array(
+                        'taxonomy' => 'ls_quiz_niveau',
+                        'field' => 'slug',
+                        'terms' => $level,
+                    )
+                ));
+            } else {
+                // FILTRE gestion des niveaux de diffulté COURS
+                $query->set('meta_query', array(
+                    array(
+                        'key' => 'difficulte',
+                        'value' => $level,
+                        'compare' => '='
+                    )
+                ));
+            }
+        }
+
+        // FILTRE ordre chrono
+        if (isset($_GET['sort_order'])) {
+            $query->set('orderby', 'date');
+            $query->set('order', ($_GET['sort_order'] === 'asc') ? 'ASC' : 'DESC');
+        }
+
+        // case à cocher avec les thèmes QUIZ
+        if (isset($_GET['custom_cat']) && is_array($_GET['custom_cat'])) {
+            $cat_ids = array_map('intval', $_GET['custom_cat']);
+            $tax_name = is_post_type_archive('quiz_learnsphere') ? 'ls_quiz_genre' : 'category';
+
+            // tax_query specifique
+            $tax_query = $query->get('tax_query') ?: array('relation' => 'AND');
+            $tax_query[] = array(
+                'taxonomy' => $tax_name,
+                'field' => 'term_id',
+                'terms' => $cat_ids,
+            );
+            $query->set('tax_query', $tax_query);
+        }
+    }
+}
+// lie la fonction
+add_action('pre_get_posts', 'ns_filter_and_sort_courses');
 // MENU BURGER
-function ns_enqueue_custom_scripts() {
+function ns_enqueue_custom_scripts()
+{
     // chargement du script du menu bg
     wp_enqueue_script(
         'ns-mobile-menu',
