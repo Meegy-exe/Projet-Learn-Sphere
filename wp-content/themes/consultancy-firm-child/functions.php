@@ -16,6 +16,16 @@ function theme_enqueue_styles()
     if (is_front_page()) {
         wp_enqueue_style('ns-home-style', get_stylesheet_directory_uri() . '/assets/css/home.css');
     }
+    // affiche si sur page quiz ou cours
+    if (is_post_type_archive('cours') || is_post_type_archive('quiz_learnsphere')) {
+        wp_enqueue_style(
+            'ns-quiz-cours-style',
+            get_stylesheet_directory_uri() . '/assets/css/quiz-cours.css',
+            // css bien chargé 
+            array('child-style'),
+            '1.0'
+        );
+    }
 }
 
 
@@ -304,6 +314,62 @@ function consultancy_firm_quiz_section()
     <?php
 }
 
+// filtre de recherche par theme
+// modification du theme parent
+function ns_filter_and_sort_courses($query)
+{
+    if (!is_admin() && $query->is_main_query() && (is_post_type_archive('cours') || is_post_type_archive('quiz_learnsphere'))) {
+
+        // FILTRE gestion des niveaux de diffulté QUIZ
+        if (isset($_GET['difficulty_level']) && !empty($_GET['difficulty_level'])) {
+            $level = sanitize_text_field($_GET['difficulty_level']);
+
+            if (is_post_type_archive('quiz_learnsphere')) {
+                // slug dans quiz genre
+                $query->set('tax_query', array(
+                    'relation' => 'AND',
+                    array(
+                        'taxonomy' => 'ls_quiz_niveau',
+                        'field' => 'slug',
+                        'terms' => $level,
+                    )
+                ));
+            } else {
+                // FILTRE gestion des niveaux de diffulté COURS
+                $query->set('meta_query', array(
+                    array(
+                        'key' => 'difficulte',
+                        'value' => $level,
+                        'compare' => '='
+                    )
+                ));
+            }
+        }
+
+        // FILTRE ordre chrono
+        if (isset($_GET['sort_order'])) {
+            $query->set('orderby', 'date');
+            $query->set('order', ($_GET['sort_order'] === 'asc') ? 'ASC' : 'DESC');
+        }
+
+        // case à cocher avec les thèmes QUIZ
+        if (isset($_GET['custom_cat']) && is_array($_GET['custom_cat'])) {
+            $cat_ids = array_map('intval', $_GET['custom_cat']);
+            $tax_name = is_post_type_archive('quiz_learnsphere') ? 'ls_quiz_genre' : 'category';
+
+            // tax_query specifique
+            $tax_query = $query->get('tax_query') ?: array('relation' => 'AND');
+            $tax_query[] = array(
+                'taxonomy' => $tax_name,
+                'field' => 'term_id',
+                'terms' => $cat_ids,
+            );
+            $query->set('tax_query', $tax_query);
+        }
+    }
+}
+// lie la fonction
+add_action('pre_get_posts', 'ns_filter_and_sort_courses');
 // MENU BURGER
 function ns_enqueue_custom_scripts()
 {
