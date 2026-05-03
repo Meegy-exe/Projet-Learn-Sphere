@@ -105,3 +105,12 @@
 .navigation.pagination .page-numbers {
     background-color: transparent !important;
 }
+
+/* contour btn pagination */
+.theme-btn-link {
+    border: 1px solid var(--ns-blue) !important;
+}
+
+a:hover {
+    color: var(--ns-dark-blue) !important;
+}

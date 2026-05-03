@@ -27,3 +27,15 @@ h6 {
 a {
     color: var(--ns-blue);
 }
+
+/* page credit/policy */
+/* page contact */
+/* fix largeur du body de la page suite au rm de la side bar */
+.page #secondary {
+    display: none !important;
+}
+.page #primary {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
