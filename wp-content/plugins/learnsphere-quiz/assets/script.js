@@ -2,7 +2,7 @@
 
 
 // permet de calculer le score directement dans le nav sans devoir reload la page
-function caculateQuizScore(quizId) {
+function calculateQuizScore(quizId) {
     // cible le form correspondant au quiz sur lequel il y a eu un clic
     // utilise lid pour bien cibler car il peut y en avoir plusieurs
     let quizForm = document.getElementById("quiz-form-" + quizId);
@@ -15,7 +15,7 @@ function caculateQuizScore(quizId) {
     let score = 0;
 
     // cible les questions (blocs div) notées dans le formulaire
-    let allQuestions = quizForm.querySelectorAll(".ls-question-block");
+    const  allQuestions = quizForm.querySelectorAll('.ls-question-card');
 
     // compte les questions pour le score total
     let totalNumberOfQuestions = allQuestions.length;

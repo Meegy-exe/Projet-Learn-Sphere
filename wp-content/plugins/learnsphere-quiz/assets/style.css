@@ -1,15 +1,102 @@
-/* * fichier de style du plugin LearnSphere Quiz de NorthStars * */
+/* * Fichier de style du plugin LearnSphere Quiz de NorthStars * */
 
-/* CSS quizz */
-/* blocs de questions */
-.ls-question-block {
-    margin-bottom: 15px;
-    padding: 15px;
-    border-left: 5px solid transparent;
-    transition: all 0.3s ease;
+/* container */
+.ls-quiz-container {
+    margin: 0 auto 40px auto;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
 }
 
-/* ajoutées via js selon le score */
+.ls-quiz-header-image img {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.ls-quiz-main-title {
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #1A3D9E;
+}
+
+
+/* question */
+.ls-question-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #e5e7eb;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.ls-question-text {
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #333333;
+}
+
+/* reponse */
+.ls-answer-option {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.ls-answer-option input[type="radio"] {
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.ls-answer-option label {
+    font-size: 16px;
+    cursor: pointer;
+    color: #4b5563;
+}
+
+/* btn valider */
+.ls-btn-validate {
+    margin-top: 15px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #1A3D9E;
+    color: #ffffff;
+}
+
+.ls-btn-validate:hover {
+    background-color: #112a70;
+}
+
+/* score */
+.ls-score-display {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1A3D9E;
+}
+
+.ls-show-result {
+    display: block !important;
+}
+
+
+/* classe (ajouté via js pour le calcul du score) */
 .ls-correct {
     border-left: 5px solid #28a745 !important;
     background-color: #f8fff9;
@@ -23,106 +110,4 @@
 .ls-empty {
     border-left: 5px solid #ffc107 !important;
     background-color: #fffdf2;
-}
-
-/* area du score (caché par defaut) */
-.ls-quiz-result {
-    display: none;
-    margin-top: 20px;
-    border-radius: 5px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    background-color: #f4f4f4;
-}
-
-.ls-show-result {
-    display: block !important;
-}
-
-
-
-/* _____________________________________ */
-
-/* style à revoir */
-/* content */
-.ls-quiz-wrapper {
-    padding: 30px;
-    border-radius: 8px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
-    background-color: #ffffff;
-}
-
-/* titre */
-.ls-quiz-title {
-    margin-bottom: 25px;
-    font-weight: 700;
-    color: #1A3D9E;
-}
-
-/* bloc (questions, choix) */
-.ls-question-block {
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    /* séparateur */
-    border-bottom: 1px solid #f3f4f6;
-}
-
-/* enleve le séparateur tout en bas du questionnaire */
-.ls-question-block:last-of-type {
-    border-bottom: none;
-}
-
-/* titre question */
-.ls-question-block h5 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #333333;
-}
-
-/* le bouton radio & texte */
-.ls-form-check {
-    display: flex;
-    margin-bottom: 10px;
-    align-items: center;
-}
-
-/* btn radio */
-.ls-form-check-input {
-    margin-right: 12px;
-    cursor: pointer;
-}
-
-/* texte label */
-.ls-form-check-label {
-    font-size: 16px;
-    color: #4b5563;
-    cursor: pointer;
-}
-
-/* btn verifier reponses */
-.ls-btn-submit {
-    padding: 12px 25px;
-    font-weight: 600;
-    margin-top: 15px;
-    border-radius: 50px;
-    background-color: #1A3D9E;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.ls-btn-submit:hover {
-    background-color: #112a70;
-}
-
-/* affichage du score */
-.ls-quiz-result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #1A3D9E;
 }
